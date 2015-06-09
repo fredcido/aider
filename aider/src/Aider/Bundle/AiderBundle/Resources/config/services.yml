@@ -1,0 +1,12 @@
+parameters:
+    aider.query_creator.class: Aider\Bundle\AiderBundle\Entity\QueryCreator
+    aider.query_builder.class: Doctrine\ORM\QueryBuilder
+
+services:
+    aider.query_creator:
+        class: %aider.query_creator.class%
+        arguments: [@aider.query_builder]
+
+    aider.query_builder:
+        class: %aider.query_builder.class%
+        arguments: [@doctrine.orm.entity_manager]

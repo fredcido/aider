@@ -1,62 +1,70 @@
 {
-    "name": "frederico/aider",
-    "license": "proprietary",
+    "name": "gimler/symfony-rest-edition",
+    "license": "MIT",
     "type": "project",
+    "description": "The \"Symfony REST Edition\" distribution",
     "autoload": {
-        "psr-0": {
-            "": "src/",
-            "SymfonyStandard": "app/"
-        }
+        "psr-0": { "": "src/" }
     },
+    "repositories": [{
+        "type": "vcs",
+        "url": "https://github.com/ONEOKI/WebApiExtension"
+    }],
     "require": {
         "php": ">=5.3.3",
-        "symfony/symfony": "2.6.*",
-        "doctrine/orm": "~2.2,>=2.2.3,<2.5",
-        "doctrine/dbal": "<2.5",
-        "doctrine/doctrine-bundle": "~1.2",
-        "twig/extensions": "~1.0",
-        "symfony/assetic-bundle": "~2.3",
-        "symfony/swiftmailer-bundle": "~2.3",
-        "symfony/monolog-bundle": "~2.4",
-        "sensio/distribution-bundle": "~3.0,>=3.0.12",
-        "sensio/framework-extra-bundle": "~3.0,>=3.0.2",
-        "incenteev/composer-parameter-handler": "~2.0"
+        "symfony/symfony": "~2.3",
+        "symfony/icu": "1.0.*",
+        "doctrine/orm": "~2.2,>=2.2.3",
+        "doctrine/doctrine-bundle": "1.2.*",
+        "twig/extensions": "1.0.*",
+        "symfony/assetic-bundle": "2.3.*",
+        "symfony/swiftmailer-bundle": "2.3.*",
+        "symfony/monolog-bundle": "~2.3",
+        "sensio/distribution-bundle": "2.3.*",
+        "sensio/framework-extra-bundle": "2.3.*",
+        "sensio/generator-bundle": "2.3.*",
+        "jms/serializer-bundle": "0.13.*@dev",
+        "friendsofsymfony/rest-bundle": "1.4.*",
+        "nelmio/api-doc-bundle": "~2.4",
+        "friendsofsymfony/http-cache-bundle": "~1.0",
+        "willdurand/hateoas-bundle": "1.0.*@dev",
+        "hautelook/templated-uri-bundle": "~2.0",
+        "willdurand/rest-extra-bundle": "~1.0",
+        "stof/doctrine-extensions-bundle": "1.1.0",
+        "doctrine/doctrine-migrations-bundle": "1.0.0",
+        "doctrine/migrations": "1.0.*@dev"
     },
-    "require-dev": {
-        "sensio/generator-bundle": "~2.3"
+    "conflict": {
+        "symfony/routing": "2.4.1"
     },
     "scripts": {
-        "post-root-package-install": [
-            "SymfonyStandard\\Composer::hookRootPackageInstall"
-        ],
         "post-install-cmd": [
-            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
         ],
         "post-update-cmd": [
-            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
         ]
     },
     "config": {
         "bin-dir": "bin"
     },
+    "minimum-stability": "stable",
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",
-        "symfony-assets-install": "relative",
-        "incenteev-parameters": {
-            "file": "app/config/parameters.yml"
+        "branch-alias": {
+            "dev-master": "2.3-dev"
         }
+    },
+    "require-dev": {
+        "behat/behat": "^3.0",
+        "guzzle/plugin-mock": "*",
+        "phpspec/phpspec": "~2.0",
+        "behat/symfony2-extension": "^2.0",
+        "behat/web-api-extension": "1.0.*@dev"
     }
 }

@@ -1,0 +1,3 @@
+aider_company:
+  resource: "@AiderBundle/Resources/config/routing/Company.yml"
+  prefix: /

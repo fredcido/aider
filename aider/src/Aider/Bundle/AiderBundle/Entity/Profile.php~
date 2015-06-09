@@ -1,0 +1,442 @@
+<?php
+
+namespace Oki\Bundle\OkiBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Profile
+ *
+ * @ORM\Table(name="profile")
+ * @ORM\Entity(repositoryClass="Oki\Bundle\OkiBundle\Entity\ProfileRepository")
+ */
+class Profile
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    protected $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="photo_url", type="text", nullable=true)
+     */
+    protected $photoUrl;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="biography", type="text", nullable=true)
+     */
+    protected $biography;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="association_memberships", type="text", nullable=true)
+     */
+    protected $associationMemberships;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="professional_experience", type="text", nullable=true)
+     */
+    protected $professionalExperience;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="admitted_to_practice", type="text", nullable=true)
+     */
+    protected $admittedToPractice;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Oki\Bundle\OkiBundle\Entity\Company")
+     **/
+    protected $company;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Oki\Bundle\OkiBundle\Entity\Profession")
+     **/
+    protected $profession;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Oki\Bundle\OkiBundle\Entity\JobTitle")
+     * @ORM\JoinColumn(name="job_title_id")
+     **/    
+    protected $jobTitle;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Oki\Bundle\OkiBundle\Entity\PracticeArea")
+     **/    
+    protected $practiceAreas;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Oki\Bundle\LocationBundle\Entity\Location")
+     **/    
+    protected $preferredSecondmentLocations;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Oki\Bundle\OkiBundle\Entity\Language")
+     **/    
+    protected $languages;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Oki\Bundle\OkiBundle\Entity\Education")
+     **/    
+    protected $education;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->practiceAreas = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->preferredSecondmentLocations = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->languages = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->education = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set fullName
+     *
+     * @param string $fullName
+     * @return Profile
+     */
+    public function setFullName($fullName)
+    {
+        $this->fullName = $fullName;
+
+        return $this;
+    }
+
+    /**
+     * Get fullName
+     *
+     * @return string 
+     */
+    public function getFullName()
+    {
+        return $this->fullName;
+    }
+
+    /**
+     * Set photoUrl
+     *
+     * @param string $photoUrl
+     * @return Profile
+     */
+    public function setPhotoUrl($photoUrl)
+    {
+        $this->photoUrl = $photoUrl;
+
+        return $this;
+    }
+
+
+    /**
+     * Get photoUrl
+     *
+     * @return string 
+     */
+    public function getPhotoUrl()
+    {
+        return $this->photoUrl;
+    }
+
+    /**
+     * Set biography
+     *
+     * @param string $biography
+     * @return Profile
+     */
+    public function setBiography($biography)
+    {
+        $this->biography = $biography;
+
+        return $this;
+    }
+
+    /**
+     * Get biography
+     *
+     * @return string 
+     */
+    public function getBiography()
+    {
+        return $this->biography;
+    }
+
+    /**
+     * Set associationMemberships
+     *
+     * @param string $associationMemberships
+     * @return Profile
+     */
+    public function setAssociationMemberships($associationMemberships)
+    {
+        $this->associationMemberships = $associationMemberships;
+
+        return $this;
+    }
+
+    /**
+     * Get associationMemberships
+     *
+     * @return string 
+     */
+    public function getAssociationMemberships()
+    {
+        return $this->associationMemberships;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Profile
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set company
+     *
+     * @param \Oki\Bundle\OkiBundle\Entity\Company $company
+     * @return Profile
+     */
+    public function setCompany(\Oki\Bundle\OkiBundle\Entity\Company $company = null)
+    {
+        $this->company = $company;
+
+        return $this;
+    }
+
+    /**
+     * Get company
+     *
+     * @return \Oki\Bundle\OkiBundle\Entity\Company 
+     */
+    public function getCompany()
+    {
+        return $this->company;
+    }
+
+    /**
+     * Set profession
+     *
+     * @param \Oki\Bundle\OkiBundle\Entity\Profession $profession
+     * @return Profile
+     */
+    public function setProfession(\Oki\Bundle\OkiBundle\Entity\Profession $profession = null)
+    {
+        $this->profession = $profession;
+
+        return $this;
+    }
+
+    /**
+     * Get profession
+     *
+     * @return \Oki\Bundle\OkiBundle\Entity\Profession 
+     */
+
+    public function getProfession()
+    {
+        return $this->profession;
+    }
+
+    /**
+     * Set jobTitle
+     *
+     * @param \Oki\Bundle\OkiBundle\Entity\JobTitle $jobTitle
+     * @return Profile
+     */
+    public function setJobTitle(\Oki\Bundle\OkiBundle\Entity\JobTitle $jobTitle = null)
+    {
+        $this->jobTitle = $jobTitle;
+
+        return $this;
+    }
+
+    /**
+     * Get jobTitle
+     *
+     * @return \Oki\Bundle\OkiBundle\Entity\JobTitle 
+     */
+    public function getJobTitle()
+    {
+        return $this->jobTitle;
+    }
+
+    /**
+     * Add preferredSecondmentLocations
+     *
+     * @param \Oki\Bundle\LocationBundle\Entity\Location $preferredSecondmentLocations
+     * @return Profile
+     */
+    public function addPreferredSecondmentLocation(\Oki\Bundle\LocationBundle\Entity\Location $preferredSecondmentLocations)
+    {
+        $this->preferredSecondmentLocations[] = $preferredSecondmentLocations;
+
+        return $this;
+    }
+
+    /**
+     * Remove preferredSecondmentLocations
+     *
+     * @param \Oki\Bundle\LocationBundle\Entity\Location $preferredSecondmentLocations
+     */
+    public function removePreferredSecondmentLocation(\Oki\Bundle\LocationBundle\Entity\Location $preferredSecondmentLocations)
+    {
+        $this->preferredSecondmentLocations->removeElement($preferredSecondmentLocations);
+    }
+
+    /**
+     * Get preferredSecondmentLocations
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPreferredSecondmentLocations()
+    {
+        return $this->preferredSecondmentLocations;
+    }
+
+    /**
+     * Add languages
+     *
+     * @param \Oki\Bundle\OkiBundle\Entity\Language $languages
+     * @return Profile
+     */
+    public function addLanguage(\Oki\Bundle\OkiBundle\Entity\Language $languages)
+    {
+        $this->languages[] = $languages;
+
+        return $this;
+    }
+
+    /**
+     * Remove languages
+     *
+     * @param \Oki\Bundle\OkiBundle\Entity\Language $languages
+     */
+    public function removeLanguage(\Oki\Bundle\OkiBundle\Entity\Language $languages)
+    {
+        $this->languages->removeElement($languages);
+    }
+
+    /**
+     * Get languages
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getLanguages()
+    {
+        return $this->languages;
+    }
+
+    /**
+     * Add education
+     *
+     * @param \Oki\Bundle\OkiBundle\Entity\Education $education
+     * @return Profile
+     */
+    public function addEducation(\Oki\Bundle\OkiBundle\Entity\Education $education)
+    {
+        $this->education[] = $education;
+
+        return $this;
+    }
+
+    /**
+     * Remove education
+     *
+     * @param \Oki\Bundle\OkiBundle\Entity\Education $education
+     */
+    public function removeEducation(\Oki\Bundle\OkiBundle\Entity\Education $education)
+    {
+        $this->education->removeElement($education);
+    }
+
+    /**
+     * Get education
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEducation()
+    {
+        return $this->education;
+    }
+
+    /**
+     * Add practiceAreas
+     *
+     * @param \Oki\Bundle\OkiBundle\Entity\PracticeArea $practiceAreas
+     * @return Profile
+     */
+    public function addPracticeArea(\Oki\Bundle\OkiBundle\Entity\PracticeArea $practiceAreas)
+    {
+        $this->practiceAreas[] = $practiceAreas;
+
+        return $this;
+    }
+
+    /**
+     * Remove practiceAreas
+     *
+     * @param \Oki\Bundle\OkiBundle\Entity\PracticeArea $practiceAreas
+     */
+    public function removePracticeArea(\Oki\Bundle\OkiBundle\Entity\PracticeArea $practiceAreas)
+    {
+        $this->practiceAreas->removeElement($practiceAreas);
+    }
+
+    /**
+     * Get practiceAreas
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPracticeAreas()
+    {
+        return $this->practiceAreas;
+    }
+}

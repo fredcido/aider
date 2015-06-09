@@ -1,0 +1,26 @@
+company_list:
+  path: /companies
+  defaults: { _controller: "AiderBundle:Company:getCompanies" }
+  methods: GET
+
+company:
+  path: /company/{id}
+  defaults: { _controller: "AiderBundle:Company:getCompany" }
+  methods: GET
+
+company_post:
+  path: /company
+  defaults: { _controller: "AiderBundle:Company:postCompany" }
+  methods: POST
+
+company_patch:
+  path: /company/{id}
+  defaults: { _controller: AiderBundle:Company:patchCompany }
+  methods: PATCH
+  requirements:
+    id:  \d+
+
+company_delete:
+  path: /company/{id}
+  defaults: { _controller: "AiderBundle:Company:deleteCompany" }
+  methods: DELETE
