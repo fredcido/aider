@@ -1,4 +1,4 @@
 suites:
-  oki_bundle:
+  aider_bundle:
     namespace: Aider\Bundle\AiderBundle
     spec_path: src/Aider/Bundle/AiderBundle/Tests
